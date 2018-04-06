@@ -27,7 +27,8 @@ def ransac(pts1, pts2):
             errors = nl.norm(np.squeeze(pts1_) - np.squeeze(conv), axis=1)
 
             if(np.sum(errors < 1) / total_len > 0.5):
-                print("Average Residual is: " + str(np.mean((errors * (errors < 1)))))
+                print("Total inliers: " + str(np.sum(errors < 1)))
+                print("Average Residual is: " + str(np.sum((errors ** 2 * (errors < 1))) / np.sum(errors < 1)))
                 print("Match Found!")
                 postive = list(np.where(errors < 1)[0])
                 matches = []

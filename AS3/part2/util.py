@@ -116,7 +116,7 @@ def ransac(pts1, pts2):
             errors = abs(np.array([pt2.T @ F @ pt1 for pt1, pt2 in zip(pts1_, pts2_)]))
 
             if(np.sum(errors < 1e-16) / total_len > 0.4):
-                # print(np.sum(errors < 1e-16) / total_len)
+                print(np.sum(errors < 1e-16))
                 # print("Average Residual is: " + str(np.sum((errors * (errors < 1e-16))) / np.sum(errors < 1e-16)))
                 print("Match Found!")
                 postive = list(np.where(errors < 1e-16)[0])

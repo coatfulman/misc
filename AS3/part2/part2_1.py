@@ -8,14 +8,15 @@ from util import fit_fundamental, get_matches, ff_wrapper
 ##
 ## load images and match files for the first example
 ##
+loc = 'house'
 
-I1 = Image.open('house1.jpg')
-I2 = Image.open('house2.jpg')
+I1 = Image.open(loc + '1.jpg')
+I2 = Image.open(loc + '2.jpg')
 
 # print(cv2.imread('house1.jpg', flags=0)[3][5], I1.getpixel((3,5)))
 
-# matches = np.loadtxt('house_matches.txt')
-matches = get_matches(cv2.imread('house1.jpg', flags=0), cv2.imread('house2.jpg', flags=0))
+# matches = np.loadtxt(loc + '_matches.txt')
+matches = get_matches(cv2.imread(loc + '1.jpg', flags=0), cv2.imread(loc + '2.jpg', flags=0))
 
 # this is a N x 4 file where the first two numbers of each row
 # are coordinates of corners in the first image and the last two
@@ -62,7 +63,7 @@ L = np.divide(L1,np.kron(np.ones((3,1)),l).transpose())# rescale the line
 pt_line_dist = np.multiply(L, np.c_[matches[:,2:4], np.ones((N,1))]).sum(axis = 1)
 closest_pt = matches[:,2:4] - np.multiply(L[:,0:2],np.kron(np.ones((2,1)), pt_line_dist).transpose())
 
-print(np.mean(abs(pt_line_dist)))
+print(np.mean(pt_line_dist ** 2))
 
 # find endpoints of segment on epipolar line (for display purposes)
 pt1 = closest_pt - np.c_[L[:,1], -L[:,0]]*10# offset from the closest point is 10 pixels
