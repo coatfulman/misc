@@ -110,6 +110,7 @@ def ransac(pts1, pts2):
         errors = np.abs([pt2.T @ F @ pt1 for pt1, pt2 in zip(pts1, pts2)])
         # print(np.max(errors))
         # print(np.mean(errors))
+
         if np.mean(errors) < 1e-12:
             # print(np.mean(errors))
             pts1_, pts2_ =  np.array([p.reshape(3,1) for p in pts1]), np.array([p.reshape(3,1) for p in pts2])
