@@ -186,7 +186,6 @@ class BaseNet(nn.Module):
         self.bn3 = nn.BatchNorm2d(32)
         self.bn4 = nn.BatchNorm2d(64)
 
-        self.bnfc = nn.BatchNorm1d(TOTAL_CLASSES//2)
 
         # <<TODO#3>> Add more linear (fc) layers
         # <<TODO#4>> Add normalization layers after linear and
@@ -196,8 +195,8 @@ class BaseNet(nn.Module):
         
         self.fc_net = nn.Sequential(
             nn.Linear(64 * 5 * 5, TOTAL_CLASSES//2),
-            nn.BatchNorm1d(TOTAL_CLASSES // 2),
             nn.ReLU(inplace=True),
+            nn.BatchNorm1d(TOTAL_CLASSES // 2),
             nn.Linear(TOTAL_CLASSES//2, TOTAL_CLASSES),
         )
 
