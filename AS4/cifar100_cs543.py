@@ -190,7 +190,6 @@ class BaseNet(nn.Module):
         self.fc_net = nn.Sequential(
             nn.Linear(64 * 5 * 5, TOTAL_CLASSES//2),
             nn.ReLU(inplace=True),
-            
             nn.Linear(TOTAL_CLASSES//2, TOTAL_CLASSES),
         )
 
@@ -199,16 +198,16 @@ class BaseNet(nn.Module):
         # <<TODO#3&#4>> Based on the above edits, you'll have
         # to edit the forward pass description here.
 
-        x = self.pool(F.relu(nn.BatchNorm2d(self.conv1(x))))
+        x = self.pool(F.relu(nn.BatchNorm2d(3)(self.conv1(x))))
         # Output size = 28//2 x 28//2 = 14 x 14
         # print("c1", x.size())
-        x = self.pool(F.relu(nn.BatchNorm2d(self.conv2(x))))
+        x = self.pool(F.relu(nn.BatchNorm2d(16)(self.conv2(x))))
         # Output size = 10//2 x 10//2 = 5 x 5
         # print("c2", x.size())
-        x = F.relu(nn.BatchNorm2d(self.conv3(x)))
+        x = F.relu(nn.BatchNorm2d(32)(self.conv3(x)))
         # Output size = 5*5
         # print("c3", x.size())
-        x = F.relu(nn.BatchNorm2d(self.conv4(x)))
+        x = F.relu(nn.BatchNorm2d(64)(self.conv4(x)))
         # Output size = 5*5
         # print("c4", x.size())
 
