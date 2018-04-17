@@ -39,6 +39,7 @@ torch.manual_seed(111)
 # epochs are apt for your model.
 # ---------
 EPOCHS = 40
+EPOCHS = 40
 # ---------
 
 IS_GPU = True
@@ -251,7 +252,7 @@ criterion = nn.CrossEntropyLoss()
 
 # Tune the learning rate.
 # See whether the momentum is useful or not
-optimizer = optim.SGD(net.parameters(), lr=0.005, momentum=0.9)
+optimizer = optim.Adam(net.parameters())
 
 plt.ioff()
 fig = plt.figure()
