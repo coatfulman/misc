@@ -181,6 +181,11 @@ class BaseNet(nn.Module):
         self.conv3 = nn.Conv2d(16, 32, 3, padding=1)
         self.conv4 = nn.Conv2d(32, 64, 3, padding=1)
 
+        self.bn1 = nn.BatchNorm2d(6)
+        self.bn2 = nn.BatchNorm2d(16)
+        self.bn3 = nn.BatchNorm2d(32)
+        self.bn4 = nn.BatchNorm2d(64)
+
         # <<TODO#3>> Add more linear (fc) layers
         # <<TODO#4>> Add normalization layers after linear and
         # experiment inserting them before or after ReLU (nn.BatchNorm1d)
@@ -198,16 +203,16 @@ class BaseNet(nn.Module):
         # <<TODO#3&#4>> Based on the above edits, you'll have
         # to edit the forward pass description here.
 
-        x = self.pool(F.relu(nn.BatchNorm2d(6)(self.conv1(x))))
+        x = self.pool(F.relu(self.bn1(self.conv1(x))))
         # Output size = 28//2 x 28//2 = 14 x 14
         # print("c1", x.size())
-        x = self.pool(F.relu(nn.BatchNorm2d(16)(self.conv2(x))))
+        x = self.pool(F.relu(self.bn2(self.conv2(x))))
         # Output size = 10//2 x 10//2 = 5 x 5
         # print("c2", x.size())
-        x = F.relu(nn.BatchNorm2d(32)(self.conv3(x)))
+        x = F.relu(self.bn3(self.conv3(x)))
         # Output size = 5*5
         # print("c3", x.size())
-        x = F.relu(nn.BatchNorm2d(64)(self.conv4(x)))
+        x = F.relu(self.bn4(self.conv4(x)))
         # Output size = 5*5
         # print("c4", x.size())
 
