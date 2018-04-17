@@ -178,8 +178,8 @@ class BaseNet(nn.Module):
         self.pool = nn.MaxPool2d(2, 2)
         self.conv2 = nn.Conv2d(6, 16, 5)
 
-        self.conv3 = nn.Conv2d(16, 32, 3)
-        self.conv4 = nn.Conv2d(32, 64, 3)
+        self.conv3 = nn.Conv2d(16, 32, 3, padding=1)
+        self.conv4 = nn.Conv2d(32, 64, 3, padding=1)
 
         # <<TODO#3>> Add more linear (fc) layers
         # <<TODO#4>> Add normalization layers after linear and
