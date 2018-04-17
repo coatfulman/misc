@@ -198,7 +198,7 @@ class BaseNet(nn.Module):
         # <<TODO#3&#4>> Based on the above edits, you'll have
         # to edit the forward pass description here.
 
-        x = self.pool(F.relu(nn.BatchNorm2d(3)(self.conv1(x))))
+        x = self.pool(F.relu(nn.BatchNorm2d(6)(self.conv1(x))))
         # Output size = 28//2 x 28//2 = 14 x 14
         # print("c1", x.size())
         x = self.pool(F.relu(nn.BatchNorm2d(16)(self.conv2(x))))
