@@ -38,14 +38,14 @@ torch.manual_seed(111)
 # <<TODO#5>> Based on the val set performance, decide how many
 # epochs are apt for your model.
 # ---------
-EPOCHS = 15
+EPOCHS = 30
 # ---------
 
 IS_GPU = True
 TEST_BS = 256
 TOTAL_CLASSES = 100
 TRAIN_BS = 32
-PATH_TO_CIFAR100_CS543 = "/projects/training/baps/CS543/"
+PATH_TO_CIFAR100_CS543 = "."
 
 def calculate_val_accuracy(valloader, is_gpu):
     """ Util function to calculate val set accuracy,
@@ -107,10 +107,14 @@ labels while all the labels in the test set are set to 0.
 # You shouldn't have any data augmentation in test_transform (val or test data is never augmented).
 # ---------------------
 
+norm_ops = transforms.Normalize(mean=[0, 0, 0],
+                             std=[1, 1, 1])
+argu_ops = transforms.RandomHorizontalFlip()
+
 train_transform = transforms.Compose(
-    [transforms.ToTensor()])
+    [norm_ops, argu_ops, transforms.ToTensor()])
 test_transform = transforms.Compose(
-    [transforms.ToTensor()])
+    [norm_ops, transforms.ToTensor()])
 # ---------------------
 
 trainset = CIFAR100_CS543(root=PATH_TO_CIFAR100_CS543, fold="train",
