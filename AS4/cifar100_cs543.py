@@ -194,10 +194,10 @@ class BaseNet(nn.Module):
         # http://pytorch.org/docs/master/nn.html#torch.nn.Sequential
         
         self.fc_net = nn.Sequential(
-            nn.Linear(64 * 5 * 5, TOTAL_CLASSES),
+            nn.Linear(64 * 5 * 5, TOTAL_CLASSES//2),
             nn.ReLU(inplace=True),
-            nn.BatchNorm1d(TOTAL_CLASSES),
-            nn.Linear(TOTAL_CLASSES, TOTAL_CLASSES),
+            nn.BatchNorm1d(TOTAL_CLASSES // 2),
+            nn.Linear(TOTAL_CLASSES//2, TOTAL_CLASSES),
         )
 
     def forward(self, x):
@@ -249,7 +249,7 @@ criterion = nn.CrossEntropyLoss()
 
 # Tune the learning rate.
 # See whether the momentum is useful or not
-optimizer = optim.SGD(net.parameters(), lr=0.005, momentum=0.9)
+optimizer = optim.Adam(net.parameters(), lr=0.005, momentum=0.9)
 
 plt.ioff()
 fig = plt.figure()
