@@ -38,7 +38,7 @@ torch.manual_seed(111)
 # <<TODO#5>> Based on the val set performance, decide how many
 # epochs are apt for your model.
 # ---------
-EPOCHS = 30
+EPOCHS = 40
 # ---------
 
 IS_GPU = True
@@ -109,10 +109,12 @@ labels while all the labels in the test set are set to 0.
 
 norm_ops = transforms.Normalize(mean=[0, 0, 0],
                              std=[1, 1, 1])
-argu_ops = transforms.RandomHorizontalFlip()
+argu_ops1 = transforms.RandomHorizontalFlip()
+argu_ops2 = transforms.RandomCrop()
+
 
 train_transform = transforms.Compose(
-    [argu_ops, transforms.ToTensor(), norm_ops])
+    [argu_ops1, argu_ops2, transforms.ToTensor(), norm_ops])
 test_transform = transforms.Compose(
     [transforms.ToTensor(), norm_ops])
 # ---------------------
