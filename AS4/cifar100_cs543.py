@@ -38,7 +38,7 @@ torch.manual_seed(111)
 # <<TODO#5>> Based on the val set performance, decide how many
 # epochs are apt for your model.
 # ---------
-EPOCHS = 25
+EPOCHS = 20
 # ---------
 
 IS_GPU = True
