@@ -174,12 +174,12 @@ class BaseNet(nn.Module):
         # Do not have a maxpool layer after every conv layer in your
         # deeper network as it leads to too much loss of information.
 
-        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.conv1 = nn.Conv2d(3, 6, 3, padding=1)
         self.pool = nn.MaxPool2d(2, 2)
-        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.conv2 = nn.Conv2d(6, 16, 3, padding=1)
 
-        self.conv3 = nn.Conv2d(16, 32, 3, padding=1)
-        self.conv4 = nn.Conv2d(32, 64, 3, padding=1)
+        self.conv3 = nn.Conv2d(16, 32, 2, padding=1)
+        self.conv4 = nn.Conv2d(32, 64, 2, padding=1)
 
         self.bn1 = nn.BatchNorm2d(6)
         self.bn2 = nn.BatchNorm2d(16)
@@ -194,7 +194,7 @@ class BaseNet(nn.Module):
         # http://pytorch.org/docs/master/nn.html#torch.nn.Sequential
         
         self.fc_net = nn.Sequential(
-            nn.Linear(64 * 5 * 5, TOTAL_CLASSES),
+            nn.Linear(64 * 8 * 8, TOTAL_CLASSES),
             nn.ReLU(inplace=True),
             nn.BatchNorm1d(TOTAL_CLASSES),
             nn.Linear(TOTAL_CLASSES, TOTAL_CLASSES),
@@ -206,10 +206,10 @@ class BaseNet(nn.Module):
         # to edit the forward pass description here.
 
         x = self.pool(F.relu(self.bn1(self.conv1(x))))
-        # Output size = 28//2 x 28//2 = 14 x 14
+        # Output size = 28//2 x 28//2 = 14 x 14    16
         # print("c1", x.size())
         x = self.pool(F.relu(self.bn2(self.conv2(x))))
-        # Output size = 10//2 x 10//2 = 5 x 5
+        # Output size = 10//2 x 10//2 = 5 x 5       8
         # print("c2", x.size())
         x = F.relu(self.bn3(self.conv3(x)))
         # Output size = 5*5
@@ -220,7 +220,7 @@ class BaseNet(nn.Module):
 
         # See the CS231 link to understand why this is 16*5*5!
         # This will help you design your own deeper network
-        x = x.view(-1, 64 * 5 * 5)
+        x = x.view(-1, 64 * 8 * 8)
         x = self.fc_net(x)
 
         # No softmax is needed as the loss function in step 3
