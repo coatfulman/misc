@@ -192,8 +192,6 @@ class BaseNet(nn.Module):
             nn.ReLU(inplace=True),
             nn.Linear(TOTAL_CLASSES//2, TOTAL_CLASSES // 2),
             nn.ReLU(inplace=True),
-            nn.Linear(TOTAL_CLASSES // 2, TOTAL_CLASSES // 2),
-            nn.ReLU(inplace=True),
             nn.Linear(TOTAL_CLASSES//2, TOTAL_CLASSES),
         )
 
