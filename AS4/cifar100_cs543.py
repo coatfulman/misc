@@ -206,9 +206,15 @@ class BaseNet(nn.Module):
         x = self.pool(F.relu(self.conv2(x)))
         # Output size = 10//2 x 10//2 = 5 x 5
 
+        x = F.relu(self.conv3(x))
+        # Output size = 5*5
+
+        x = F.relu(self.conv4(x))
+        # Output size = 5*5
+
         # See the CS231 link to understand why this is 16*5*5!
         # This will help you design your own deeper network
-        x = x.view(-1, 16 * 5 * 5)
+        x = x.view(-1, 64 * 5 * 5)
         x = self.fc_net(x)
 
         # No softmax is needed as the loss function in step 3
