@@ -26,8 +26,8 @@
       <file leaf-file-name="cifar100_cs543.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cifar100_cs543.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="587">
-              <caret line="193" column="34" lean-forward="false" selection-start-line="193" selection-start-column="34" selection-end-line="193" selection-end-column="34" />
+            <state relative-caret-position="192">
+              <caret line="192" column="12" lean-forward="false" selection-start-line="192" selection-start-column="12" selection-end-line="192" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -171,8 +171,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cifar100_cs543.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="193" column="34" lean-forward="false" selection-start-line="193" selection-start-column="34" selection-end-line="193" selection-end-column="34" />
+        <state relative-caret-position="553">
+          <caret line="209" column="33" lean-forward="true" selection-start-line="209" selection-start-column="33" selection-end-line="209" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs543_dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2586">
+          <caret line="153" column="3" lean-forward="false" selection-start-line="153" selection-start-column="3" selection-end-line="153" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cifar100_cs543.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="192" column="12" lean-forward="false" selection-start-line="192" selection-start-column="12" selection-end-line="192" selection-end-column="12" />
           <folding />
         </state>
       </provider>
