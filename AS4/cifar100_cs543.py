@@ -178,6 +178,9 @@ class BaseNet(nn.Module):
         self.pool = nn.MaxPool2d(2, 2)
         self.conv2 = nn.Conv2d(6, 16, 5)
 
+        self.conv3 = nn.Conv2d(16, 32, 3)
+        self.conv4 = nn.Conv2d(32, 64, 3)
+
         # <<TODO#3>> Add more linear (fc) layers
         # <<TODO#4>> Add normalization layers after linear and
         # experiment inserting them before or after ReLU (nn.BatchNorm1d)
@@ -185,8 +188,10 @@ class BaseNet(nn.Module):
         # http://pytorch.org/docs/master/nn.html#torch.nn.Sequential
         
         self.fc_net = nn.Sequential(
-            nn.Linear(16 * 5 * 5, TOTAL_CLASSES//2),
+            nn.Linear(64 * 5 * 5, TOTAL_CLASSES//2),
             nn.ReLU(inplace=True),
+            # nn.Linear(TOTAL_CLASSES//2, TOTAL_CLASSES // 2),
+            # nn.ReLU(inplace=True),
             nn.Linear(TOTAL_CLASSES//2, TOTAL_CLASSES),
         )
 
