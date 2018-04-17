@@ -38,7 +38,7 @@ torch.manual_seed(111)
 # <<TODO#5>> Based on the val set performance, decide how many
 # epochs are apt for your model.
 # ---------
-EPOCHS = 40
+EPOCHS = 25
 # ---------
 
 IS_GPU = True
@@ -175,10 +175,9 @@ class BaseNet(nn.Module):
         # Do not have a maxpool layer after every conv layer in your
         # deeper network as it leads to too much loss of information.
 
-        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.conv1 = nn.Conv2d(3, 6, 3, padding=1)
         self.pool = nn.MaxPool2d(2, 2)
-        self.conv2 = nn.Conv2d(6, 16, 5)
-
+        self.conv2 = nn.Conv2d(6, 16, 3, padding=1)
         self.conv3 = nn.Conv2d(16, 32, 3, padding=1)
         self.conv4 = nn.Conv2d(32, 64, 3, padding=1)
 
@@ -195,7 +194,7 @@ class BaseNet(nn.Module):
         # http://pytorch.org/docs/master/nn.html#torch.nn.Sequential
         
         self.fc_net = nn.Sequential(
-            nn.Linear(64 * 10 * 10, TOTAL_CLASSES//2),
+            nn.Linear(64 * 8 * 8, TOTAL_CLASSES//2),
             nn.ReLU(inplace=True),
             nn.BatchNorm1d(TOTAL_CLASSES // 2),
             nn.Linear(TOTAL_CLASSES//2, TOTAL_CLASSES),
@@ -207,10 +206,10 @@ class BaseNet(nn.Module):
         # to edit the forward pass description here.
 
         x = self.pool(F.relu(self.bn1(self.conv1(x))))
-        # Output size = 28//2 x 28//2 = 14 x 14
+        # Output size = 28//2 x 28//2 = 14 x 14  32 / 2 = 16
         # print("c1", x.size())
-        x = F.relu(self.bn2(self.conv2(x)))
-        # Output size = 10//2 x 10//2 = 5 x 5  10*10 now
+        x = self.pool(F.relu(self.bn2(self.conv2(x))))
+        # Output size = 10//2 x 10//2 = 5 x 5  10*10 now 16 / 2 = 8
         # print("c2", x.size())
         x = F.relu(self.bn3(self.conv3(x)))
         # Output size = 5*5
@@ -221,7 +220,7 @@ class BaseNet(nn.Module):
 
         # See the CS231 link to understand why this is 16*5*5!
         # This will help you design your own deeper network
-        x = x.view(-1, 64 * 10 * 10)
+        x = x.view(-1, 64 * 8 * 8)
         x = self.fc_net(x)
 
         # No softmax is needed as the loss function in step 3
@@ -250,7 +249,7 @@ criterion = nn.CrossEntropyLoss()
 
 # Tune the learning rate.
 # See whether the momentum is useful or not
-optimizer = optim.Adam(net.parameters())
+optimizer = optim.SGD(net.parameters(), lr=0.005, momentum=0.9)
 
 plt.ioff()
 fig = plt.figure()
