@@ -194,7 +194,7 @@ class BaseNet(nn.Module):
         # http://pytorch.org/docs/master/nn.html#torch.nn.Sequential
         
         self.fc_net = nn.Sequential(
-            nn.Linear(64 * 5 * 5, TOTAL_CLASSES//2),
+            nn.Linear(64 * 10 * 10, TOTAL_CLASSES//2),
             nn.ReLU(inplace=True),
             nn.BatchNorm1d(TOTAL_CLASSES // 2),
             nn.Linear(TOTAL_CLASSES//2, TOTAL_CLASSES),
@@ -208,8 +208,8 @@ class BaseNet(nn.Module):
         x = self.pool(F.relu(self.bn1(self.conv1(x))))
         # Output size = 28//2 x 28//2 = 14 x 14
         # print("c1", x.size())
-        x = self.pool(F.relu(self.bn2(self.conv2(x))))
-        # Output size = 10//2 x 10//2 = 5 x 5
+        x = F.relu(self.bn2(self.conv2(x)))
+        # Output size = 10//2 x 10//2 = 5 x 5  10*10 now
         # print("c2", x.size())
         x = F.relu(self.bn3(self.conv3(x)))
         # Output size = 5*5
@@ -220,7 +220,7 @@ class BaseNet(nn.Module):
 
         # See the CS231 link to understand why this is 16*5*5!
         # This will help you design your own deeper network
-        x = x.view(-1, 64 * 5 * 5)
+        x = x.view(-1, 64 * 10 * 10)
         x = self.fc_net(x)
 
         # No softmax is needed as the loss function in step 3
