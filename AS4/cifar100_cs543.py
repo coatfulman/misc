@@ -112,9 +112,9 @@ norm_ops = transforms.Normalize(mean=[0, 0, 0],
 argu_ops = transforms.RandomHorizontalFlip()
 
 train_transform = transforms.Compose(
-    [norm_ops, transforms.ToTensor(), argu_ops])
+    [argu_ops, transforms.ToTensor(), norm_ops])
 test_transform = transforms.Compose(
-    [norm_ops, transforms.ToTensor()])
+    [transforms.ToTensor(), norm_ops])
 # ---------------------
 
 trainset = CIFAR100_CS543(root=PATH_TO_CIFAR100_CS543, fold="train",

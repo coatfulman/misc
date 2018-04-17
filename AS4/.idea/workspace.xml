@@ -26,8 +26,8 @@
       <file leaf-file-name="cifar100_cs543.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cifar100_cs543.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="114" column="5" lean-forward="false" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
+            <state relative-caret-position="328">
+              <caret line="116" column="36" lean-forward="false" selection-start-line="116" selection-start-column="36" selection-end-line="116" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -39,6 +39,7 @@
     <findStrings>
       <find>train_b</find>
       <find>root</find>
+      <find>trainl</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -170,8 +171,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cifar100_cs543.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="114" column="5" lean-forward="false" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
+        <state relative-caret-position="328">
+          <caret line="116" column="36" lean-forward="false" selection-start-line="116" selection-start-column="36" selection-end-line="116" selection-end-column="36" />
           <folding />
         </state>
       </provider>
