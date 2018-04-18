@@ -194,10 +194,10 @@ class BaseNet(nn.Module):
         # http://pytorch.org/docs/master/nn.html#torch.nn.Sequential
         
         self.fc_net = nn.Sequential(
-            nn.Linear(64 * 8 * 8, TOTAL_CLASSES),
+            nn.Linear(64 * 8 * 8, TOTAL_CLASSES // 2),
             nn.ReLU(inplace=True),
-            nn.BatchNorm1d(TOTAL_CLASSES),
-            nn.Linear(TOTAL_CLASSES, TOTAL_CLASSES),
+            nn.BatchNorm1d(TOTAL_CLASSES // 2),
+            nn.Linear(TOTAL_CLASSES//2, TOTAL_CLASSES),
         )
 
     def forward(self, x):
